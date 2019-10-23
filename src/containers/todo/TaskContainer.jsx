@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { addTask, deleteTask, completeTask, editMode, inputEdit } from "../../store/todo/action"
-import Input from "../../components/Input"
-import ToDoList from "../../components/todo-list"
+import { addTask, deleteTask, completeTask, editMode, inputEdit } from "../../store/Task/action"
+import Input from "../../components/InputTask"
+import ToDoList from "../../components/TaskList"
 import { connect } from "react-redux"
-import InputEdit from "../../components/Input-edit";
+import InputEdit from "../../components/InputTaskEdit";
 
 class ToDo extends Component {
     state = {
         taskText: "",
-        newText: ""
+        newText: "",
     }
 
     putInputToProps = ({ target: { value } }) => {
@@ -45,22 +45,31 @@ class ToDo extends Component {
         }
     }
 
+   
+    editModeKek = () =>{
+        const {tasks} =this.props
+        if(tasks.some(task => task.mode === true)) return true
+    }
+
     render() {
-        const { taskText, newText } = this.state;
+        const { taskText, newText,display } = this.state;
         const { tasks, deleteTask, completeTask, editMode } = this.props
 
         return (
             <div  >
                 <InputEdit
+                    onLoad={this.editModeKek}
+                    display={display}
                     onChange={this.putInputEditToProps}
                     onKeyPress={this.addNewText}
                     value={newText}
-                    display={tasks} />
+                     />
                 <Input
                     onKeyPress={this.addTaskkk}
                     onChange={this.putInputToProps}
                     value={taskText} />
                 <ToDoList
+                    editModeKek={this.editModeKek}
                     editMode={editMode}
                     completeTask={completeTask}
                     tasksList={tasks}

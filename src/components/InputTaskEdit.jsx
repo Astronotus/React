@@ -1,12 +1,13 @@
 import React from 'react';
-import "./Input-edit.css"
+import "./InputTaskEdit.css"
 
 
-const InputEdit = ({ value, onChange,onKeyPress,display }) => {
+
+const InputEdit = ({ value, onChange,onKeyPress,onLoad }) => {
     return (
-        <div>
+        <div >
             <input
-        
+            className={onLoad()?"go":"stop"}
             placeholder="edit"
             value={value}
             onChange={onChange}

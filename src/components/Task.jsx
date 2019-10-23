@@ -1,9 +1,10 @@
 import React from 'react';
-import "./todo-item.css"
+import "./Task.css"
 
 
 const  ToDoItem=({ text,isCompleted,id, deleteTask,completeTask,editMode,mode})=>(
         <li className="item">
+
             <div onClick={()=>completeTask(id)} className={isCompleted?"circle-check":"circle-uncheck"} ></div>
             <p  mode={toString(mode)}  className={isCompleted?"line-through":"text"}>{text}</p>
             <img onClick={()=>editMode(id)} src="img/edit.png" alt="edit" className="edit" />
@@ -12,3 +13,4 @@ const  ToDoItem=({ text,isCompleted,id, deleteTask,completeTask,editMode,mode})=
     )
 
 export default ToDoItem;
+

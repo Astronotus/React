@@ -10,7 +10,8 @@ export const addTask = (id,text,isCompleted,mode) => ({
         id,
         text,
         isCompleted,
-        mode
+        mode,
+
 });
 
 export const deleteTask = id => ({
@@ -28,7 +29,7 @@ export const inputEdit = (newText) => ({
         newText      
 });
 
-export const editMode = id => ({
+export const editMode = (id) => ({
         type: EDIT_MODE,
-        id,
+        id
 });

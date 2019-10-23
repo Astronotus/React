@@ -52,7 +52,5 @@ const tasks = (state = initialState, { id, text, isCompleted, type,mode, newText
             return state;
     }
 }
-//er0goke0rg0er9jkg0ejr9g
-
 
 export default tasks

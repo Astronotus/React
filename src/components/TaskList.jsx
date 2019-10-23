@@ -1,6 +1,6 @@
 import React from 'react';
-import ToDoItem from './todo-item';
-import "./todo-list.css"
+import ToDoItem from './Task';
+import "./TaskList.css"
 
 
 const ToDoList = ({ tasksList, deleteTask,completeTask,editMode }) => (

@@ -4,3 +4,8 @@ body{
     background-color: rgba(0,0,0,0.1);
     font-family: 'Titillium Web', sans-serif;
 }
+
+.app-wrap{
+    display:flex;
+    justify-content: row;
+}
