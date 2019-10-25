@@ -1,22 +1,17 @@
-import { ADD_TASK, DELETE_TASK, COMPLETE_TASK, EDIT_MODE, INPUT_EDIT } from "./action"
+import { ADD_TASK, DELETE_TASK, COMPLETE_TASK, EDIT_MODE, INPUT_EDIT,GET_TASKS } from "./action"
 
-const initialState = [
-    {
-        id: 1,
-        text: "Learn ReactJS",
-        isCompleted: false,
-        mode: false
-    }
-]
 
-const tasks = (state = initialState, { id, text, isCompleted, type,mode, newText }) => {
+const initialState = []
+
+const tasks = (state = initialState, {id, text, isCompleted, type,mode, newText,listId,payload }) => {
     switch (type) {
         case ADD_TASK:
             return [...state, {
                 id,
                 text,
                 isCompleted,
-                mode
+                mode,
+                listId
             }
             ]
 
@@ -47,6 +42,9 @@ const tasks = (state = initialState, { id, text, isCompleted, type,mode, newText
                 }
                 return task
             })
+        
+        case GET_TASKS:
+            return payload
                
         default:
             return state;

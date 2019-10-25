@@ -1,0 +1,28 @@
+{
+  "lists": [
+    {
+      "name": "Привет",
+      "id": 1
+    },
+    {
+      "name": "Как дела",
+      "id": 2
+    }
+  ],
+  "tasks": [
+    {
+      "text": "ПРивет",
+      "isCompleted": false,
+      "mode": false,
+      "listId": 1,
+      "id": 1
+    },
+    {
+      "text": "Привет 2",
+      "isCompleted": false,
+      "mode": false,
+      "listId": "1",
+      "id": 2
+    }
+  ]
+}

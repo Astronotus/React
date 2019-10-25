@@ -2,8 +2,8 @@ import React from 'react';
 import "./Task.css"
 
 
-const  ToDoItem=({ text,isCompleted,id, deleteTask,completeTask,editMode,mode})=>(
-        <li className="item">
+const  ToDoItem=({ text,isCompleted,id, deleteTask,completeTask,editMode,mode,listId})=>(
+        <li className="item" listid="listId">
 
             <div onClick={()=>completeTask(id)} className={isCompleted?"circle-check":"circle-uncheck"} ></div>
             <p  mode={toString(mode)}  className={isCompleted?"line-through":"text"}>{text}</p>

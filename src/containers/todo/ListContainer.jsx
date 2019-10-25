@@ -1,14 +1,18 @@
 import React, { Component } from "react";
-import { addList, deleteList } from "../../store/List/action"
+import { addList, deleteList,getLists,changeList } from "../../store/List/action"
 import { connect } from "react-redux"
 import InputList from "../../components/InputList"
 import Lists from "../../components/Lists";
 
 class List extends Component {
     state = {
-        ListName: ""
+        ListName: "",
     }
 
+    componentDidMount(){
+        this.props.getLists()
+    }
+       
     putInputToProps = ({ target: { value } }) => {
         this.setState({
             ListName: value,
@@ -19,12 +23,14 @@ class List extends Component {
         const { ListName } = this.state;
         if (key === "Enter") {
             const { addList } = this.props;
-            addList((new Date()).getTime(), ListName);
+            addList(ListName);
             this.setState({
                 ListName: ""
             })
         }
     }
+
+
 
     render() {
         const { ListName } = this.state;
@@ -42,7 +48,8 @@ class List extends Component {
                         id={id}
                         key={id} 
                         name={name}
-                        deleteList={deleteList} />
+                        deleteList={deleteList}
+                        changeList={changeList} />
                     ))}
                 </ul>
             
@@ -54,6 +61,6 @@ class List extends Component {
 export default connect(({ tasks, lists }) => ({
     tasks,
     lists
-}), { addList, deleteList })(List);
+}), { addList, deleteList,getLists,changeList })(List);
 
 

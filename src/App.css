@@ -9,3 +9,7 @@ body{
     display:flex;
     justify-content: row;
 }
+.lists {
+    margin-left:20px;
+    margin-right:50px;
+}

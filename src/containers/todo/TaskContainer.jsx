@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { addTask, deleteTask, completeTask, editMode, inputEdit } from "../../store/Task/action"
+import { addTask, deleteTask, completeTask, editMode, inputEdit,getTasks } from "../../store/Task/action"
 import Input from "../../components/InputTask"
 import ToDoList from "../../components/TaskList"
 import { connect } from "react-redux"
@@ -9,6 +9,7 @@ class ToDo extends Component {
     state = {
         taskText: "",
         newText: "",
+        listId: 1
     }
 
     putInputToProps = ({ target: { value } }) => {
@@ -35,10 +36,10 @@ class ToDo extends Component {
     }
 
     addTaskkk = ({ key }) => {
-        const { taskText } = this.state;
+        const { taskText,listId } = this.state;
         if (key === "Enter") {
             const { addTask } = this.props;
-            addTask((new Date()).getTime(), taskText, false, false);
+            addTask(taskText, false, false,listId);
             this.setState({
                 taskText: ""
             })
@@ -49,6 +50,10 @@ class ToDo extends Component {
     editModeKek = () =>{
         const {tasks} =this.props
         if(tasks.some(task => task.mode === true)) return true
+    }
+
+    componentDidMount(){
+        this.props.getTasks(this.state.listId)
     }
 
     render() {
@@ -81,6 +86,6 @@ class ToDo extends Component {
 
 export default connect(state => ({
     tasks: state.tasks,
-}), { addTask, deleteTask, completeTask, editMode, inputEdit })(ToDo);
+}), { addTask, deleteTask, completeTask, editMode, inputEdit, getTasks })(ToDo);
 
 

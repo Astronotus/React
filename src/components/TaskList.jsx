@@ -5,9 +5,10 @@ import "./TaskList.css"
 
 const ToDoList = ({ tasksList, deleteTask,completeTask,editMode }) => (
     <ul>
-        {tasksList.map(({ id, text, isCompleted,mode }) => (
+        {tasksList.map(({ id, text, isCompleted,mode,listId }) => (
             <ToDoItem 
-            id={id} 
+            id={id}
+            listId={listId} 
             mode={mode} 
             editMode={editMode} 
             completeTask={completeTask} 
