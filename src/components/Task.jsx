@@ -2,7 +2,7 @@ import React from 'react';
 import "./Task.css"
 
 
-const  ToDoItem=({ text,isCompleted,id, deleteTask,completeTask,editMode,mode,listId})=>(
+const  Task=({ text,isCompleted,id, deleteTask,completeTask,editMode,mode})=>(
         <li className="item" listid="listId">
 
             <div onClick={()=>completeTask(id)} className={isCompleted?"circle-check":"circle-uncheck"} ></div>
@@ -12,5 +12,5 @@ const  ToDoItem=({ text,isCompleted,id, deleteTask,completeTask,editMode,mode,li
         </li>
     )
 
-export default ToDoItem;
+export default Task;
 

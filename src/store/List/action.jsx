@@ -7,7 +7,7 @@ export const CHANGE_LISTS = "CHANGE_LISTS"
 
 
 export const addList = (name) => async dispatch => {
-        const response = await axios.post(`http://localhost:3000/lists`, { name })
+        const response = await axios.post(`http://localhost:3001/lists`, { name })
         dispatch({
                 type: ADD_LIST,
                 name: response.data.name,
@@ -16,7 +16,7 @@ export const addList = (name) => async dispatch => {
 }
 
 export const deleteList = id => async dispatch => {
-         await axios.delete(`http://localhost:3000/lists/${id}`)
+         await axios.delete(`http://localhost:3001/lists/${id}`)
         dispatch({
                 type: DELETE_LIST,
                 id
@@ -25,7 +25,7 @@ export const deleteList = id => async dispatch => {
 }
 
 export const getLists = () => async dispatch => {
-        const response = await axios.get(`http://localhost:3000/lists`)
+        const response = await axios.get(`http://localhost:3001/lists`)
         dispatch({
                 type: GET_LISTS,
                 payload: response.data

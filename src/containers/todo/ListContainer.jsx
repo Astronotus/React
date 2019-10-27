@@ -1,66 +1,100 @@
 import React, { Component } from "react";
-import { addList, deleteList,getLists,changeList } from "../../store/List/action"
+import { addTask, deleteTask, completeTask, editMode, inputEdit,getTasks } from "../../store/Task/action"
+import Input from "../../components/InputTask"
+
 import { connect } from "react-redux"
-import InputList from "../../components/InputList"
-import Lists from "../../components/Lists";
+import InputEdit from "../../components/InputTaskEdit";
+import Task from "../../components/Task";
 
 class List extends Component {
-    state = {
-        ListName: "",
-    }
+    constructor(props) {
+        super(props);
+        this.id = props.id;
+        this.state = {
+          name: props.name,
+        };
+      }
 
-    componentDidMount(){
-        this.props.getLists()
-    }
-       
     putInputToProps = ({ target: { value } }) => {
         this.setState({
-            ListName: value,
+            taskText: value,
         })
     }
 
-    addList = ({ key }) => {
-        const { ListName } = this.state;
+    putInputEditToProps = ({ target: { value } }) => {
+        this.setState({
+            newText: value,
+        })
+    }
+
+    addNewText = ({ key }) => {
+        const { newText } = this.state;
         if (key === "Enter") {
-            const { addList } = this.props;
-            addList(ListName);
+            const { inputEdit } = this.props;
+            inputEdit(newText);
             this.setState({
-                ListName: ""
+                newText: ""
             })
         }
     }
 
+    addTaskkk = ({ key }) => {
+        const { taskText } = this.state;
+        if (key === "Enter") {
+            const { addTask } = this.props;
+            addTask(taskText, false, false,this.id);
+            this.setState({
+                taskText: ""
+            })
+        }
+    }
 
+    editModeKek = () =>{
+        const {tasks} =this.props
+        if(tasks.some(task => task.mode === true)) return true
+    }
+
+    componentDidMount(){
+        this.props.getTasks(this.id)
+    }
+
+    renderTasks = () => {
+        if (!this.props.tasks || this.props.tasks.length === 0) return null;
+        const tasks = this.props.tasks.map((task) => {
+          return (
+            <li key={task.id}>
+              <Task id={task.id} list={this} text={task.text} isCompleted={task.isCompleted}/>
+            </li>
+          );
+        });
+        return <ul className="tasks">{tasks}</ul>
+      };
 
     render() {
-        const { ListName } = this.state;
-        const { deleteList,  lists } = this.props
+        const { taskText, newText,display } = this.state;
 
         return (
-            <div>
-                <InputList
-                    onKeyPress={this.addList}
+            <div  >
+                <InputEdit
+                    onLoad={this.editModeKek}
+                    display={display}
+                    onChange={this.putInputEditToProps}
+                    onKeyPress={this.addNewText}
+                    value={newText}
+                     />
+                <Input
+                    onKeyPress={this.addTaskkk}
                     onChange={this.putInputToProps}
-                    value={ListName} />
-                <ul>
-                    {lists.map(({id,name }) => (
-                        <Lists 
-                        id={id}
-                        key={id} 
-                        name={name}
-                        deleteList={deleteList}
-                        changeList={changeList} />
-                    ))}
-                </ul>
-            
+                    value={taskText} />
+                    {this.renderTasks()}
+                
             </div>
         )
     }
 }
 
-export default connect(({ tasks, lists }) => ({
-    tasks,
-    lists
-}), { addList, deleteList,getLists,changeList })(List);
+export default connect(state => ({
+    tasks: state.tasks,
+}), { addTask, deleteTask, completeTask, editMode, inputEdit, getTasks })(List);
 
 

@@ -9,7 +9,7 @@ export const GET_TASKS = "GET_TASKS"
 
 
 export const addTask = (text, isCompleted, mode,listId) => async dispatch => {
-        const response = await axios.post(`http://localhost:3000/lists/${listId}/tasks`, { text, isCompleted, mode, listId })
+        const response = await axios.post(`http://localhost:3001/lists/${listId}/tasks`, { text, isCompleted, mode, listId })
         dispatch({
                 id: response.data.id,
                 type: ADD_TASK,
@@ -21,7 +21,7 @@ export const addTask = (text, isCompleted, mode,listId) => async dispatch => {
 };
 
 export const deleteTask = (id,listId) => async dispatch => {
-        await axios.delete(`http://localhost:3000/lists/${listId}/tasks/${id}`, )
+        await axios.delete(`http://localhost:3001/lists/${listId}/tasks/${id}`, )
         dispatch({
                 type: DELETE_TASK,
                 id
@@ -45,7 +45,7 @@ export const editMode = (id) => ({
 });
 
 export const getTasks = listId => async dispatch => {
-        const response = await axios.get(`http://localhost:3000/lists/${listId}/tasks`)
+        const response = await axios.get(`http://localhost:3001/lists/${listId}/tasks`)
         dispatch({
                 type: GET_TASKS,
                 payload: response.data

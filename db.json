@@ -1,28 +1,46 @@
 {
   "lists": [
     {
-      "name": "Привет",
+      "name": "хай",
       "id": 1
     },
     {
-      "name": "Как дела",
+      "name": "хелло",
       "id": 2
+    },
+    {
+      "name": "хай",
+      "id": 3
     }
   ],
   "tasks": [
     {
-      "text": "ПРивет",
+      "text": "куку",
       "isCompleted": false,
       "mode": false,
       "listId": 1,
       "id": 1
     },
     {
-      "text": "Привет 2",
+      "text": "кек",
       "isCompleted": false,
       "mode": false,
-      "listId": "1",
+      "listId": 1,
       "id": 2
+    },
+    {
+      "text": "как дила",
+      "isCompleted": false,
+      "mode": false,
+      "listId": 2,
+      "id": 3
+    },
+    {
+      "text": "намальна",
+      "isCompleted": false,
+      "mode": false,
+      "listId": 3,
+      "id": 4
     }
   ]
 }

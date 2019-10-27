@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
+    "json-server": "^0.15.1",
     "axios": "^0.19.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
@@ -16,7 +17,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "./node_modules/.bin/json-server --watch db.json --port 3001 --routes routes.json | react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

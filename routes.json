@@ -1,0 +1,3 @@
+{
+  "/lists/:id/tasks": "/tasks?listId=:id"
+}
