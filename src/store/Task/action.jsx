@@ -20,8 +20,8 @@ export const addTask = (text, isCompleted, mode,listId) => async dispatch => {
         })
 };
 
-export const deleteTask = (id,listId) => async dispatch => {
-        await axios.delete(`http://localhost:3001/lists/${listId}/tasks/${id}`, )
+export const deleteTask = (id) => async dispatch => {
+        await axios.delete(`http://localhost:3001/tasks/${id}`, )
         dispatch({
                 type: DELETE_TASK,
                 id
@@ -29,15 +29,23 @@ export const deleteTask = (id,listId) => async dispatch => {
 
 }
 
-export const completeTask = id =>  ({
-        type: COMPLETE_TASK,
-        id,
-});
+export const completeTask = (id,text, isCompleted,mode,listId) => async dispatch => {
+        await axios.put(`http://localhost:3001/tasks/${id}`,{text, isCompleted, mode, listId })
+        dispatch({
+                type: COMPLETE_TASK,
+                id,
+                isCompleted
+        }) 
+};
 
-export const inputEdit = (newText) =>  ({
-        type: INPUT_EDIT,
-        newText
-});
+export const inputEdit = (id,text, isCompleted, mode, listId ) => async dispatch =>  {
+        await axios.put(`http://localhost:3001/tasks/${id}`,{text, isCompleted, mode, listId })
+        dispatch({
+                type: INPUT_EDIT,
+                id,
+                text
+        }) 
+};
 
 export const editMode = (id) => ({
         type: EDIT_MODE,

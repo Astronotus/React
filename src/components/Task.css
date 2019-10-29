@@ -9,6 +9,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    background: white;
 }
 
 .item p{
@@ -62,4 +63,9 @@
     transition: 1s;
     border-radius: 15px;
     cursor: pointer
+}
+
+.line-through {
+    color: rgb(189, 189, 189);
+    text-decoration: line-through;
 }

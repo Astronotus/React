@@ -21,7 +21,7 @@ const tasks = (state = initialState, {id, text, isCompleted, type,mode, newText,
         case COMPLETE_TASK:
             return [...state].map(task => {
                 if (task.id === id) {
-                    task.isCompleted = !task.isCompleted
+                    task.isCompleted = isCompleted
                 }
                 return task
             })
@@ -36,9 +36,8 @@ const tasks = (state = initialState, {id, text, isCompleted, type,mode, newText,
 
         case INPUT_EDIT:
             return [...state].map(task => {
-                if (task.mode === true) {
-                    task.text=newText
-                    task.mode = false
+                if (task.id === id) {
+                    task.text = text
                 }
                 return task
             })
